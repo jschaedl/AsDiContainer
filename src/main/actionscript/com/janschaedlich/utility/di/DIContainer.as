@@ -5,10 +5,12 @@
  */
 package com.janschaedlich.utility.di
 {
-    import flash.utils.Dictionary;
-    import mx.utils.StringUtil;
     import com.janschaedlich.utility.di.error.DependencyAlreadyExistError;
     import com.janschaedlich.utility.di.error.DependencyNotFoundError;
+    
+    import flash.utils.Dictionary;
+    
+    import mx.utils.StringUtil;
     
     public class DIContainer
     {
@@ -16,16 +18,16 @@ package com.janschaedlich.utility.di
         
         public function DIContainer()
         {
-            container=new Dictionary();
+            container = new Dictionary();
         }
         
-        public function set(identifier:String, object:Object, shared:Boolean = false):void
+        public function set(identifier:String, object:*, shared:Boolean = false):void
         {
             checkDependencyPresence(identifier);
             if (shared && object is Function)
-                container[identifier]=object.call(this);
+                container[identifier] = object.call(this);
             else
-                container[identifier]=object;
+                container[identifier] = object;
         }
         
         public function get(identifier:String):Object
@@ -33,9 +35,9 @@ package com.janschaedlich.utility.di
             checkDependencyExistence(identifier);
             var object:Object = null;
             if (container[identifier] is Function)
-                object=(container[identifier] as Function).call(this);
+                object = (container[identifier] as Function).call(this);
             else
-                object=container[identifier];
+                object = container[identifier];
             return object;
         }
         

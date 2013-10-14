@@ -77,7 +77,7 @@ package com.janschaedlich.utility.di.test
             assertTrue(dateOne === dateTwo);
         }
         
-        [Test(expects="DependencyNotFoundError")]
+        [Test(expects="com.janschaedlich.utility.di.error.DependencyNotFoundError")]
         public function testRemoveDependency():void
         {
             var number:Number = new Number();
@@ -86,13 +86,13 @@ package com.janschaedlich.utility.di.test
             diContainer.get('removeDependency');
         }
         
-        [Test(expects="DependencyNotFoundError")]
+        [Test(expects="com.janschaedlich.utility.di.error.DependencyNotFoundError")]
         public function testRemoveDependencyThrowsError():void
         {
             diContainer.remove('removeDependency');
         }
         
-        [Test(expects="DependencyAlreadyExistError")]
+        [Test(expects="com.janschaedlich.utility.di.error.DependencyAlreadyExistError")]
         public function testSetDuplicateDependencyThrowsError():void
         {
             diContainer.set('duplicateDependency', new Number());

@@ -3,10 +3,12 @@
  * Jan Schaedlich
  * Created Oct 14, 2013
  */
-package
+package com.janschaedlich.utility.di
 {
     import flash.utils.Dictionary;
     import mx.utils.StringUtil;
+    import com.janschaedlich.utility.di.error.DependencyAlreadyExistError;
+    import com.janschaedlich.utility.di.error.DependencyNotFoundError;
     
     public class DIContainer
     {

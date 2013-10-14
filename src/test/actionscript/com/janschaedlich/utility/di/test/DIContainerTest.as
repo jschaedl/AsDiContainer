@@ -3,10 +3,11 @@
  * Jan Schaedlich
  * Created Oct 14, 2013
  */
-package
+package com.janschaedlich.utility.di.test
 {
     import org.flexunit.asserts.assertEquals;
     import org.flexunit.asserts.assertTrue;
+    import com.janschaedlich.utility.di.DIContainer;
     
     public class DIContainerTest
     {

@@ -3,7 +3,7 @@
  * Jan Schaedlich
  * Created Oct 14, 2013
  */
-package
+package com.janschaedlich.utility.di.test
 {
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]

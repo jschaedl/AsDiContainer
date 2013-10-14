@@ -1,9 +1,9 @@
-/** 
- * Copyright 2013. All rights reserved. 
- * Jan Schaedlich 
- * Created Oct 14, 2013 
+/**
+ * Copyright 2013. All rights reserved.
+ * Jan Schaedlich
+ * Created Oct 14, 2013
  */
-package 
+package
 {
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]

@@ -1,0 +1,5 @@
+language: objective-c
+before_script:
+  - curl 'http://download.macromedia.com/pub/flashplayer/updaters/10/flashplayer_10_sa_debug.app.zip' >> flashplayer.zip
+  - unzip flashplayer.zip
+script: mvn test -Dflex.flashPlayer.command=Flash\ Player\ Debugger.app/Contents/MacOS/Flash\ Player\ Debugger

@@ -46,6 +46,14 @@ package com.janschaedlich.utility.di
             checkDependencyExistence(identifier);
             delete container[identifier];
         }
+		
+		public function removeAll():void
+		{
+			for (var key:* in container) {
+				delete container[key];
+			}
+			container = new Dictionary();	
+		}
         
         private function checkDependencyPresence(dependencyIdentifier:String):void
         {

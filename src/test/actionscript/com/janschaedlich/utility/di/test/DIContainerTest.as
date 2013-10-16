@@ -5,9 +5,11 @@
  */
 package com.janschaedlich.utility.di.test
 {
+    import com.janschaedlich.utility.di.DIContainer;
+    
     import org.flexunit.asserts.assertEquals;
     import org.flexunit.asserts.assertTrue;
-    import com.janschaedlich.utility.di.DIContainer;
+    import org.flexunit.asserts.fail;
     
     public class DIContainerTest
     {
@@ -16,13 +18,13 @@ package com.janschaedlich.utility.di.test
         [Before]
         public function setUp():void
         {
-            diContainer=new DIContainer();
+            diContainer = new DIContainer();
         }
         
         [After]
         public function tearDown():void
         {
-            diContainer=null;
+            diContainer = null;
         }
         
         [Test]
@@ -84,12 +86,24 @@ package com.janschaedlich.utility.di.test
             diContainer.set('removeDependency', number);
             diContainer.remove('removeDependency');
             diContainer.get('removeDependency');
+			fail("Test should throw DependencyNotFoundError!");
         }
+		
+		[Test(expects="com.janschaedlich.utility.di.error.DependencyNotFoundError")]
+		public function testRemoveAllDependencies():void
+		{
+			var number:Number = new Number();
+			diContainer.set('number', number);
+			diContainer.removeAll();
+			diContainer.get('number');
+			fail("Test should throw DependencyNotFoundError!");
+		}
         
         [Test(expects="com.janschaedlich.utility.di.error.DependencyNotFoundError")]
         public function testRemoveDependencyThrowsError():void
         {
             diContainer.remove('removeDependency');
+			fail("Test should throw DependencyNotFoundError!");
         }
         
         [Test(expects="com.janschaedlich.utility.di.error.DependencyAlreadyExistError")]
@@ -97,6 +111,7 @@ package com.janschaedlich.utility.di.test
         {
             diContainer.set('duplicateDependency', new Number());
             diContainer.set('duplicateDependency', new Number());
+			fail("Test should throw DependencyAlreadyExistError!");
         }
     }
 }

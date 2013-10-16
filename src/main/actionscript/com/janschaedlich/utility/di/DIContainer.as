@@ -7,9 +7,7 @@ package com.janschaedlich.utility.di
 {
     import com.janschaedlich.utility.di.error.DependencyAlreadyExistError;
     import com.janschaedlich.utility.di.error.DependencyNotFoundError;
-    
     import flash.utils.Dictionary;
-    
     import mx.utils.StringUtil;
     
     public class DIContainer
@@ -24,6 +22,7 @@ package com.janschaedlich.utility.di
         public function set(identifier:String, object:*, shared:Boolean = false):void
         {
             checkDependencyPresence(identifier);
+            
             if (shared && object is Function)
                 container[identifier] = object.call(this);
             else
@@ -34,8 +33,9 @@ package com.janschaedlich.utility.di
         {
             checkDependencyExistence(identifier);
             var object:Object = null;
+            
             if (container[identifier] is Function)
-                object = (container[identifier] as Function).call(this);
+                object=(container[identifier] as Function).call(this);
             else
                 object = container[identifier];
             return object;
@@ -46,14 +46,15 @@ package com.janschaedlich.utility.di
             checkDependencyExistence(identifier);
             delete container[identifier];
         }
-		
-		public function removeAll():void
-		{
-			for (var key:* in container) {
-				delete container[key];
-			}
-			container = new Dictionary();	
-		}
+        
+        public function removeAll():void
+        {
+            for (var key:* in container)
+            {
+                delete container[key];
+            }
+            container = new Dictionary();
+        }
         
         private function checkDependencyPresence(dependencyIdentifier:String):void
         {
